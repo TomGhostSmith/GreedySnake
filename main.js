@@ -10,7 +10,7 @@ var sequence = ['L', 'A', 'D', 'E', 'R', 'V', 'A', 'V', 'D', 'A', 'F', 'V', 'E',
     // var ctx = c.getContext("2d");
 
 function Initiate() {
-    wid = parseInt(document.body.clientWidth);
+    wid = parseInt(document.body.clientWidth) - 16;
     hei = parseInt(document.body.clientHeight);
     widNum = parseInt(wid / 30);
     heiNum = parseInt(hei / 30) - 6;

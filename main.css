@@ -3,6 +3,8 @@ body {
     height: 99%;
     width: 99%;
     text-align: center;
+    margin: 0;
+    margin-left: 16px;
 }
 
 #myCanvas {

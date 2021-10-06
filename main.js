@@ -12,7 +12,7 @@ var sequence = ['L', 'A', 'D', 'E', 'R', 'V', 'A', 'V', 'D', 'A', 'F', 'V', 'E',
 function Initiate() {
     wid = parseInt(document.body.clientWidth);
     hei = parseInt(document.body.clientHeight);
-    widNum = parseInt(wid / 30) - 1;
+    widNum = parseInt(wid / 30);
     heiNum = parseInt(hei / 30) - 6;
     canvas.style.width = widNum * 30 + "px";
     canvas.style.height = heiNum * 30 + "px";
@@ -25,7 +25,7 @@ function Initiate() {
 
 function Pumped(nextx, nexty) {
     var result = false;
-    if (nextx < 0 || nextx > widNum || nexty < 0 || nexty > heiNum) {
+    if (nextx < 0 || nextx >= widNum || nexty < 0 || nexty >= heiNum) {
         result = true;
         return result;
     }
@@ -179,7 +179,7 @@ function Start() {
     mainTimer = setInterval(() => {
         Forward();
         Draw();
-    }, 150);
+    }, 300);
 }
 
 function End() {

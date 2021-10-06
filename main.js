@@ -13,7 +13,7 @@ function Initiate() {
     wid = parseInt(document.body.clientWidth) - 16;
     hei = parseInt(document.body.clientHeight);
     widNum = parseInt(wid / 30);
-    heiNum = parseInt(hei / 30) - 6;
+    heiNum = parseInt(hei / 30) - 7;
     canvas.style.width = widNum * 30 + "px";
     canvas.style.height = heiNum * 30 + "px";
     AddLength(parseInt(widNum / 2), parseInt(heiNum / 2), 'B', 0);

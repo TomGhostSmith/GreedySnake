@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <!-- <input type="button" value="开始游戏" onclick="beginGame();"><br/><br/><br/> -->
+    <div id="myCanvas" style="box-shadow: 0 0 6px #000;"></div>
+    <!-- <img src="B.png" alt="" id="B"> -->
+    <!-- <div class="box" style="height: 30px;width: 30px;background-color: #ccc;"></div> -->
+    <div id="control">
+        <br>
+        <button style="width: 50px;height: 30px;" onclick="Start();">Start</button>
+        <button style="width: 50px;height: 30px;" onclick="End();">End</button>
+
+        <div id="directions" style="position: relative;">
+            <div class="direction" id="left" onclick="Left()" style="left: 0px;top: 50px;position: absolute;">←</div>
+            <div class="direction" id="up" onclick="Up()" style="left: 50px;top: 0px;position: absolute;">↑</div>
+            <div class="direction" id="right" onclick="Right()" style="left: 100px;top: 50px;position: absolute;">→</div>
+            <div class="direction" id="down" onclick="Down()" style="left: 50px;top: 50px;position: absolute;">↓</div>
+        </div>
+    </div>
+</body>
+<script src="main.js"></script>
+
+</html>

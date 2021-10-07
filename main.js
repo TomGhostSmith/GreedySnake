@@ -199,6 +199,20 @@ function Draw() {
                 break;
         }
     }
+    snake[0].obj.classList.remove("up");
+    snake[0].obj.classList.remove("left");
+    snake[0].obj.classList.remove("right");
+    switch (snake[0].direction) {
+        case 3:
+            snake[0].obj.classList.add("left");
+            break;
+        case 6:
+            snake[0].obj.classList.add("up");
+            break;
+        case 9:
+            snake[0].obj.classList.add("right");
+            break;
+    }
 }
 
 

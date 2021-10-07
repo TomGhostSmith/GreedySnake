@@ -11,6 +11,8 @@ var btn = document.getElementById("start");
 var sequence = [];
 var hasEnd;
 var result = document.getElementById("result");
+var bar = document.getElementById("diff");
+var speed = 700;
 var all = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y'];
 // var ctx = c.getContext("2d");
 
@@ -101,8 +103,16 @@ function Forward() {
         }
     } else if (Pumped(nextx, nexty)) {
         clearInterval(mainTimer);
-        alert("啊哦，核糖体的翻译中断了。不要灰心，您可以调整方向，然后按继续按钮复活~");
-        btn.innerHTML = "继续";
+        if (confirm("啊哦，核糖体的翻译中断了。您想要继续游戏吗？") == true) {
+            btn.innerHTML = "继续";
+        } else {
+            if (confirm("很遗憾，任务结束。是否观看我们项目的简介视频？") == true) {
+                window.location.href = "https://video.igem.org/w/7nsVni1Fc2HXbewZ6U3quV";
+            } else {
+                alert("您可以刷新后选择不同难度再次挑战！");
+                location.reload;
+            }
+        }
     } else {
         for (i = len - 1; i > 0; i--) {
             snake[i].x = snake[i - 1].x;
@@ -218,7 +228,7 @@ function Start() {
             mainTimer = setInterval(() => {
                 Forward();
                 Draw();
-            }, 300);
+            }, speed);
             btn.innerHTML = "暂停";
         } else {
             clearInterval(mainTimer);
@@ -376,5 +386,12 @@ function ShowDetail(protein) {
             name.innerHTML = "脯氨酸";
             text.innerHTML = "一般用途：<br>用于营养不良、蛋白质缺乏症、严重胃肠道疾病，烫伤及外科手术后的蛋白质补充。<br><br>富含脯氨酸的食品：<br>萝卜、生菜、甜菜";
             break;
+    }
+}
+
+bar.oninput = function() {
+    speed = (10 - bar.value) * 100;
+    if (btn.innerHTML == "暂停") {
+        Start();
     }
 }

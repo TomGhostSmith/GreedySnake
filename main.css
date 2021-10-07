@@ -34,8 +34,8 @@ img.up {
 }
 
 .direction {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     display: inline-block;
     background-color: #ddd;
     vertical-align: middle;

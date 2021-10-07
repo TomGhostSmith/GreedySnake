@@ -18,7 +18,7 @@ function Initiate() {
     wid = parseInt(document.body.clientWidth) - 16;
     hei = parseInt(document.body.clientHeight);
     widNum = parseInt(wid / 30);
-    heiNum = parseInt(hei / 30) - 7;
+    heiNum = parseInt(hei / 30) - 10;
     canvas.style.width = widNum * 30 + "px";
     canvas.style.height = heiNum * 30 + "px";
     AddLength(parseInt(widNum / 2), parseInt(heiNum / 2), 'B', 0);
@@ -76,7 +76,7 @@ function Forward() {
         snake.unshift(newBody);
         snake[1].protein = food.protein;
         snake[1].obj.onclick = function() { ShowDetail(this.alt) };
-        result.innerHTML = "当前长度：" + snake.length;
+        result.innerHTML = "长度：" + snake.length;
         if (snake.length == widNum * heiNum) {
             clearInterval(mainTimer);
             if (confirm("您已填满全部空间！是否观看我们项目的简介视频？") == true) {

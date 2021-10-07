@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>贪吃核糖体</title>
     <link rel="stylesheet" href="main.css">
 </head>
 
@@ -13,13 +13,155 @@
     <!-- <input type="button" value="开始游戏" onclick="beginGame();"><br/><br/><br/> -->
     <div id="control" style="position: relative;height: 50px;">
         <br>
-        <button style="width: 50px;height: 30px;left: 50px;position: absolute;" onclick="Start();">Start</button>
-        <button style="width: 50px;height: 30px;right: 50px;position: absolute;" onclick="End();">Pause</button>
+        <button id="start" style="width: 80px;height: 50px;left: 50px;position: absolute;font-size: 1.2rem;" onclick="Start();">开始</button>
+        <button id="dic" style="width: 80px;height: 50px;right: 50px;position: absolute;font-size: 1.2rem;" onclick="Dictionary();">图鉴</button>
     </div>
     <br>
     <div id="myCanvas" style="box-shadow: 0 0 6px #000;"></div>
     <!-- <img src="B.png" alt="" id="B"> -->
     <!-- <div class="box" style="height: 30px;width: 30px;background-color: #ccc;"></div> -->
+    <!-- <div id="display" style="z-index: 10;"> -->
+    <div id="description" style="display: none;position: absolute;height: calc(70% - 40px);width: calc(80% - 40px);top: 15%;left: 10%;background-color: rgba(200, 200, 200, 0.9);padding: 20px;text-align: left;z-index: 11;border-radius: 1rem;">
+        <div class="picbox" style="height: 6.5rem;text-align: center;">
+            <img id="pic" src="A.png" alt="" style="width: 4rem;height: 4rem;position: relative;cursor: default;">
+            <div id="name" style="height: 1.5rem;font-size: 1.5rem;position: relative;">
+                丙氨酸
+            </div>
+        </div>
+        <div class="exit" style="position: absolute;right: 0;top: 0;border-radius: 1rem;width: 2rem;height: 2rem;background-color: #888;color:#fff;text-align: center;cursor: pointer;" onclick="CloseWindow()">x</div>
+        <div id="textContainer" style="display:flex;height:calc(100% - 11rem);">
+            <div id="text" style="margin: auto;max-height:100%;overflow: auto;vertical-align: middle;scrollbar-width: 0;font-size: 1.2rem;line-height: 1.8rem;">
+            </div>
+        </div>
+    </div>
+    <div id="description2" style="position: absolute;height: calc(70% - 40px);width: calc(80% - 40px);top: 15%;left: 10%;background-color: rgba(200, 200, 200, 0.9);padding: 20px;text-align: left;z-index: 11;border-radius: 1rem;">
+        <div class="picbox" style="height: 2.5rem;text-align: center;">
+            <div style="height: 1.5rem;font-size: 1.5rem;position: relative;">
+                写在前面
+            </div>
+        </div>
+        <div class="exit" style="position: absolute;right: 0;top: 0;border-radius: 1rem;width: 2rem;height: 2rem;background-color: #888;color:#fff;text-align: center;cursor: pointer;" onclick="CloseWindow2()">x</div>
+        <div id="textContainer" style="display:flex;height:calc(100% - 4.5rem);">
+            <div style="margin: auto;max-height:100%;overflow: auto;vertical-align: middle;scrollbar-width: 0;font-size: 1.2rem;line-height: 1.8rem;">
+                设计这款小游戏是希望能有更多的人了解组成人体的20种氨基酸。在20种氨基酸中是有必需氨基酸和非必需氨基酸之分的。<br><br>必需氨基酸是指人体（或其它脊椎动物）不能合成或合成速度远不能适应机体需要，必需由食物蛋白质供给的氨基酸。对成人而言，必需氨基酸有九种，即：赖氨酸、色氨酸、苯丙氨酸、甲硫氨酸、苏氨酸、异亮氨酸、亮氨酸、缬氨酸。另外，在婴儿体内，组氨酸也是必需的。<br><br>一般来说，食物中蛋白质营养价值的高低，主要取决于所含必需氨基酸的种类、含量及其比例是否与人体所需要的相近。因此，动物蛋白质和植物蛋白质混合食用，不同的植物蛋白质混合食用，从而补充丰富的蛋白质，才能维持身体的健康。<br><br>游戏过程中，您可以随时暂停，通过点击“贪吃蛇”身体上的字母来查看其对应氨基酸相关信息。
+            </div>
+        </div>
+        <hr>
+        <select id="difficulty">
+            <option value="1">基础模式</option>
+            <option value="2">挑战：牛胰岛素合成</option>
+            <option value="3">无尽模式</option>
+        </select>
+    </div>
+    <div id="description3" style="display: none;position: absolute;height: calc(70% - 40px);width: calc(80% - 40px);top: 15%;left: 10%;background-color: rgba(200, 200, 200, 0.9);padding: 20px;text-align: left;z-index: 9;border-radius: 1rem;">
+        <div class="exit" style="position: absolute;right: 0;top: 0;border-radius: 1rem;width: 2rem;height: 2rem;background-color: #888;color:#fff;text-align: center;cursor: pointer;" onclick="CloseWindow3()">x</div>
+        <div id="textContainer" style="display:flex;height:calc(100% - 2rem);">
+            <div id="text" style="margin: auto;max-height:100%;overflow: auto;vertical-align: middle;scrollbar-width: 0;font-size: 1.2rem;line-height: 1.8rem;">
+                <img src="A.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('A');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    丙氨酸
+                </div>
+                <br>
+                <img src="C.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('C');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    半胱氨酸
+                </div>
+                <br>
+                <img src="D.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('D');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    天冬氨酸
+                </div>
+                <br>
+                <img src="E.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('E');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    谷氨酸
+                </div>
+                <br>
+                <img src="F.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('F');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    苯丙氨酸
+                </div>
+                <br>
+                <img src="G.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('G');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    甘氨酸
+                </div>
+                <br>
+                <img src="H.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('H');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    组氨酸
+                </div>
+                <br>
+                <img src="I.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('I');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    异亮氨酸
+                </div>
+                <br>
+                <img src="K.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('K');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    赖氨酸
+                </div>
+                <br>
+                <img src="L.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('L');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    亮氨酸
+                </div>
+                <br>
+                <img src="M.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('M');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    甲硫氨酸
+                </div>
+                <br>
+                <img src="N.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('N');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    天冬酰胺
+                </div>
+                <br>
+                <img src="P.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('P');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    脯氨酸
+                </div>
+                <br>
+                <img src="Q.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('Q');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    谷氨酰胺
+                </div>
+                <br>
+                <img src="R.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('R');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    精氨酸
+                </div>
+                <br>
+                <img src="S.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('S');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    丝氨酸
+                </div>
+                <br>
+                <img src="T.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('T');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    苏氨酸
+                </div>
+                <br>
+                <img src="V.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('V');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    缬氨酸
+                </div>
+                <br>
+                <img src="W.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('W');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    色氨酸
+                </div>
+                <br>
+                <img src="Y.png" alt="" style="width: 4rem;height: 4rem;position: relative;display: inline;vertical-align: middle;" onclick="ShowDetail('Y');">
+                <div style="height: 1.5rem;font-size: 1.5rem;position: relative;display: inline;">
+                    酪氨酸
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="result" style="position:absolute;bottom: 50px; left: 30px;font-size: 1.5rem;">
+        当前长度：1
+    </div>
     <div id="directions" style="position: absolute;bottom: 120px;right: 180px;">
         <div class="direction" id="left" onclick="Left()" style="left: 0px;top: 50px;position: absolute;">←</div>
         <div class="direction" id="up" onclick="Up()" style="left: 50px;top: 0px;position: absolute;">↑</div>

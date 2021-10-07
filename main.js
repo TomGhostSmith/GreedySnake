@@ -104,6 +104,7 @@ function Forward() {
     } else if (Pumped(nextx, nexty)) {
         clearInterval(mainTimer);
         if (confirm("啊哦，核糖体的翻译中断了。您想要继续游戏吗？") == true) {
+            alert("您可以通过改变方向，然后按“继续”按钮复活~");
             btn.innerHTML = "继续";
         } else {
             if (confirm("很遗憾，任务结束。是否观看我们项目的简介视频？") == true) {

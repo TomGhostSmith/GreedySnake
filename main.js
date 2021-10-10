@@ -325,6 +325,10 @@ function ShowDetail(protein) {
             name.innerHTML = "丙氨酸";
             text.innerHTML = "生理作用：<br>预防肾结石、协助葡萄糖的代谢，有助缓和低血糖，改善身体能量。<br><br>富含丙氨酸的食品：<br>奶酪、巧克力和柑橘类食品";
             break;
+        case 'B':
+            name.innerHTML = "核糖体";
+            text.innerHTML = "核糖体是蛋白质翻译的主要场所。在这里，还会出现mRNA、tRNA。<br><br>mRNA（信使RNA）：是DNA转录的产物、蛋白质翻译的模板，起到传递遗传信息的作用。<br><br>tRNA（转运RNA）：有特定的区域用于配对，每一种tRNA分别携带着一种氨基酸<br><br>核糖体：由rRNA和蛋白质组成，可以认读mRNA上的信息并将对应tRNA运送的氨基酸连成蛋白质";
+            break;
         case 'G':
             name.innerHTML = "甘氨酸";
             text.innerHTML = "生理作用：<br>非人体必需氨基酸。如果甘氨酸的摄入量过多，不仅不会被吸收，还会影响其他氨基酸的吸收，从而影响健康。以甘氨酸为主要原料的乳制品，会影响青少年的生长发育。<br><br>富含甘氨酸的食品：<br>绿色蔬菜、动物内脏";
